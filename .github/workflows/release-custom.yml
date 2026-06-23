@@ -51,6 +51,9 @@ jobs:
 
       - name: Run release script from windmill-custom
         working-directory: windmill-custom
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           chmod +x release.sh
           set -o allexport
