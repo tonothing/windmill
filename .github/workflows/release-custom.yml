@@ -42,21 +42,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create .env from DOT_ENV repository variable
-        working-directory: windmill-custom
-        env:
-          DOT_ENV_CONTENTS: ${{ vars.DOT_ENV }}
-        run: |
-          printf '%s\n' "$DOT_ENV_CONTENTS" > .env
-
       - name: Run release script from windmill-custom
         working-directory: windmill-custom
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           chmod +x release.sh
-          set -o allexport
-          source .env
-          set +o allexport
           ./release.sh
