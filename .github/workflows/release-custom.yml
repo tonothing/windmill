@@ -43,10 +43,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run release script from windmill-custom
-        working-directory: windmill-custom
+        # working-directory: windmill-custom
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          chmod +x release.sh
-          ./release.sh
+          chmod +x windmill-custom/release.sh
+          ./windmill-custom/release.sh
