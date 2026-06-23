@@ -1,4 +1,4 @@
-name: Release windmill-custom
+name: Release windmill
 
 on:
   workflow_dispatch:
@@ -22,6 +22,12 @@ jobs:
           repository: tonothing/windmill-custom
           token: ${{ secrets.PAT_TOKEN }}
           path: windmill-custom
+          fetch-depth: 0
+
+      - name: Authenticate GitHub CLI with PAT
+        run: |
+          echo "${{ secrets.PAT_TOKEN }}" | gh auth login --with-token
+          gh auth status
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
