@@ -6,7 +6,7 @@ on:
     - cron: '0 * * * *'
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 jobs:
@@ -43,9 +43,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run release script from windmill-custom
-        # working-directory: windmill-custom
         env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           chmod +x windmill-custom/release.sh
